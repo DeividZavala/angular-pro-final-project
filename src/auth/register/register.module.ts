@@ -20,4 +20,4 @@ export const ROUTES: Routes = [
     RegisterComponent
   ]
 })
-export class LoginModule{}
+export class RegisterModule{}
