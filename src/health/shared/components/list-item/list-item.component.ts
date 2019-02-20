@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from "@angular/core";
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from "@angular/core";
 
 @Component({
   selector: "list-item",
@@ -6,11 +6,51 @@ import {ChangeDetectionStrategy, Component, Input} from "@angular/core";
   styleUrls: ["./list-item.component.scss"],
   template: `
     <div class="list-item">
-      {{item | json}}
+      <a [routerLink]="getRoute(item)" >
+        <p class="list-item__name">{{item.name}}</p>
+        <p class="list-item__ingredients">
+          <span>{{item.ingredients}}</span>
+        </p>
+      </a>
+      
+      <div
+        class="list-item__delete"
+        *ngIf="toggled"
+      >
+        <p>Delete item?</p>
+        <button class="confirm" (click)="removeItem()" type="button">Yes</button>
+        <button class="cancel" (click)="toggle()" type="button">No</button>
+      </div>
+      
+      <button
+        (click)="toggle()"
+        class="trash">
+        <img src="/img/remove.svg" alt="remove">
+      </button>
+      
     </div>
   `
 })
 export class ListItemComponent{
+
+  toggled: boolean = false;
+
   @Input()
   item: any;
+
+  @Output()
+  remove = new EventEmitter<any>();
+
+  toggle(){
+    this.toggled = !this.toggled;
+  }
+
+  removeItem(){
+    this.remove.emit(this.item);
+  }
+
+  getRoute(item:any){
+    return ["../meals", item.$key];
+  }
+
 }
