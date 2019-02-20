@@ -19,7 +19,6 @@ import {Store} from "store";
           <img src="/img/add-white.svg" alt="add">
           New Meal
         </a>
-        <!-- ngFor -->
       </div>
       
       <div *ngIf="meals$ | async as meals; else loading">
@@ -27,6 +26,7 @@ import {Store} from "store";
           <img src="/img/face.svg" alt="face">
           No meals, add a new meal to start
         </div>
+        <list-item *ngFor="let meal of meals" [item]="meal"></list-item>
       </div>
       
       <ng-template #loading>

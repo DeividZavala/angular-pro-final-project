@@ -1,9 +1,10 @@
-import {Component, EventEmitter, Output} from "@angular/core";
+import {Component, EventEmitter, Output, ChangeDetectionStrategy} from "@angular/core";
 import {FormArray, FormControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Meal} from "../../../shared/services/meals.service";
 
 @Component({
   selector: "meal-form",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ["./meal-form.component.scss"],
   template: `
     <div class="meal-form">
