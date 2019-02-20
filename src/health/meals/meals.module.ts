@@ -6,6 +6,7 @@ import {RouterModule, Routes} from "@angular/router";
 //containers
 import {MealsComponent} from "./containers/meals/meals.component";
 import {MealComponent} from "./containers/meal/meal.component";
+import {MealFormComponent} from "./components/meal-form/meal-form.component";
 
 const ROUTER: Routes = [
   {path: "", component: MealsComponent},
@@ -20,7 +21,8 @@ const ROUTER: Routes = [
   ],
   declarations:[
     MealsComponent,
-    MealComponent
+    MealComponent,
+    MealFormComponent
   ]
 })
 export class MealsModule{}
