@@ -5,14 +5,17 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 import {User} from "./auth/shared/services/auth/auth.service";
+import {Meal} from "./health/shared/services/meals.service";
 
 export interface State {
-  user: User
+  user: User,
+  meals: Meal[],
   [key: string]: any
 }
 
 const state: State = {
-  user: null
+  user: null,
+  meals: null
 };
 
 export class Store {
