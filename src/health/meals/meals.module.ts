@@ -5,9 +5,11 @@ import {RouterModule, Routes} from "@angular/router";
 
 //containers
 import {MealsComponent} from "./containers/meals/meals.component";
+import {MealComponent} from "./containers/meal/meal.component";
 
 const ROUTER: Routes = [
-  {path: "", component: MealsComponent}
+  {path: "", component: MealsComponent},
+  {path: "new", component: MealComponent}
 ];
 
 @NgModule({
@@ -17,7 +19,8 @@ const ROUTER: Routes = [
     ReactiveFormsModule
   ],
   declarations:[
-    MealsComponent
+    MealsComponent,
+    MealComponent
   ]
 })
 export class MealsModule{}
