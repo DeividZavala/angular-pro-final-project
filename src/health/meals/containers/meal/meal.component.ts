@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
-import {Meal, MealsService} from "../../../shared/services/meals.service";
+import {Meal, MealsService} from "../../../shared/services/meals/meals.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable, Subscription} from "rxjs";
 

@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 
 import {Store} from 'store'
-import {AuthService} from "../../../auth/shared/services/auth/auth.service";
+import {AuthService} from "../../../../auth/shared/services/auth/auth.service";
 import {AngularFireDatabase} from "angularfire2/database";
 
 
