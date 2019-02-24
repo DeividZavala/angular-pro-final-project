@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output, ChangeDetectionStrategy, OnChanges, SimpleChanges, Input} from "@angular/core";
-import {FormArray, FormControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {Workout} from "../../../shared/services/workouts/workouts.service";
 
 @Component({

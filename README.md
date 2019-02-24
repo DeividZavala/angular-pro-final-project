@@ -6,7 +6,7 @@ Angular Pro: Final App Seed
 
 ---
 
-<a href="https://ultimateangular.com" target="_blank"><img src="https://ultimateangular.com/assets/img/banners/ua-github.svg"></a>
+<a href="https://ultimatecourses.com" target="_blank"><img src="https://ultimatecourses.com/assets/img/banners/ultimate-angular-github.svg"></a>
 
 ---
 
