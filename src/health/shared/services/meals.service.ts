@@ -31,15 +31,19 @@ export class MealsService{
     return this.authService.user.uid
   }
 
-  addMeal(meal: Meal){
-    return this.db.list(`/meals/${this.uid}`).push(meal);
-  }
-
   getMeal(key: string){
     if(!key) return Observable.of({});
     return this.store.select<Meal[]>("meals")
       .filter(Boolean)
       .map(meals => meals.find((meal:Meal) => meal.$key === key));
+  }
+
+  addMeal(meal: Meal){
+    return this.db.list(`/meals/${this.uid}`).push(meal);
+  }
+
+  updateMeal(key: string, meal: Meal){
+    return this.db.object(`/meals/${this.uid}/${key}`).update(meal);
   }
 
   removeMeal(key: string){
