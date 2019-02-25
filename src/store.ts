@@ -12,12 +12,14 @@ export interface State {
   user: User,
   meals: Meal[],
   workouts: Workout[],
+  date: Date,
   [key: string]: any
 }
 
 const state: State = {
   user: null,
   meals: null,
+  date: null,
   workouts: null
 };
 
