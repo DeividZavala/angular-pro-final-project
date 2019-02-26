@@ -6,7 +6,7 @@ import {RouterModule, Routes} from "@angular/router";
 // components
 import {ScheduleCalendarComponent} from "./components/schedule-calendar/schedule-calendar.component";
 import {ScheduleControlsComponent} from "./components/schedule-controls/schedule-controls.component";
-import {ScheduleDayComponent} from "./components/schedule-day/schedule-day.component";
+import {ScheduleDaysComponent} from "./components/schedule-day/schedule-days.component";
 
 //containers
 import {ScheduleComponent} from "./containers/schedule/schedule.component";
@@ -25,7 +25,7 @@ const ROUTER: Routes = [
     ScheduleComponent,
     ScheduleCalendarComponent,
     ScheduleControlsComponent,
-    ScheduleDayComponent
+    ScheduleDaysComponent
   ]
 })
 export class ScheduleModule{}
