@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Observable, Subscription} from "rxjs";
-import {ScheduleService} from "../../../shared/services/schedule/schedule.service";
+import {ScheduleItem, ScheduleService} from "../../../shared/services/schedule/schedule.service";
 import {Store} from "store";
 
 @Component({
@@ -8,13 +8,18 @@ import {Store} from "store";
   styleUrls: ["./schedule.component.scss"],
   template: `
     <div class="schedule">
-      <schedule-calendar [date]="date$ | async" (change)="changeDate($event)"></schedule-calendar>
+      <schedule-calendar 
+        [date]="date$ | async" 
+        [items]="schedule$ | async"
+        (change)="changeDate($event)" 
+        (select)="changeSection($event)"></schedule-calendar>
     </div>
   `
 })
 export class ScheduleComponent implements OnInit, OnDestroy{
 
   date$: Observable<Date>;
+  schedule$: Observable<ScheduleItem[]>;
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -25,14 +30,21 @@ export class ScheduleComponent implements OnInit, OnDestroy{
   ngOnInit(){
 
     this.date$ = this.store.select("date");
+    this.schedule$ = this.store.select("schedule");
 
     this.subscriptions = [
-      this.scheduleService.schedule$.subscribe()
+      this.scheduleService.schedule$.subscribe(),
+      this.scheduleService.selected$.subscribe(),
     ]
   }
 
   ngOnDestroy(){
     this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  changeSection(event: any){
+    console.log(event);
+    this.scheduleService.selectSection(event);
   }
 
   changeDate(date: Date){

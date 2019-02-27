@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, Output} from "@angular/core";
+import {ScheduleItem, ScheduleList} from "../../../shared/services/schedule/schedule.service";
 
 @Component({
   selector: "schedule-calendar",
@@ -9,7 +10,16 @@ import {Component, EventEmitter, Input, OnChanges, Output} from "@angular/core";
         [selected]="selectedDay" 
         (move)="onChange($event)" ></schedule-controls>
       
-      <schedule-days [selected]="selectedDayIndex" (select)="selectDay($event)"></schedule-days>
+      <schedule-days 
+        [selected]="selectedDayIndex" 
+        (select)="selectDay($event)"></schedule-days>
+      
+      <schedule-section
+        *ngFor="let section of sections"
+        [name]="section.name"
+        [section]="getSection(section.key)" 
+        (select)="selectSection($event, section.key)"></schedule-section>
+      
       
     </div>
   `
@@ -20,17 +30,41 @@ export class ScheduleCalendarComponent implements OnChanges{
   selectedDayIndex: Number;
   selectedWeek: Date;
 
+  sections = [
+    {key: "morning", name: "Morning"},
+    {key: "lunch", name: "Lunch"},
+    {key: "evening", name: "Evening"},
+    {key: "snacks", name: "Snacks"},
+  ];
+
   @Input()
   set date(date: Date){
     this.selectedDay = new Date(date.getTime())
   }
 
+  @Input()
+  items: ScheduleList;
+
   @Output()
   change = new EventEmitter<Date>();
+
+  @Output()
+  select = new EventEmitter<any>();
 
   ngOnChanges(){
     this.selectedDayIndex = this.getToday(this.selectedDay);
     this.selectedWeek = this.getStartOfWeek(new Date(this.selectedDay));
+  }
+
+  selectSection({type, assigment, data}:any, section: string){
+    const day = this.selectedDay;
+    this.select.emit({
+      type,
+      assigment,
+      day,
+      data,
+      section
+    })
   }
 
   selectDay(index: number){
@@ -55,6 +89,10 @@ export class ScheduleCalendarComponent implements OnChanges{
     );
     startDate.setDate(startDate.getDate() + (weekOffset * 7));
     this.change.emit(startDate);
+  }
+
+  getSection(name: string): ScheduleItem{
+    return this.items && this.items[name] || {};
   }
 
   private getStartOfWeek(date: Date){
