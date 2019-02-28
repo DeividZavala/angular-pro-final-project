@@ -11,6 +11,7 @@ import {ScheduleCalendarComponent} from "./components/schedule-calendar/schedule
 import {ScheduleControlsComponent} from "./components/schedule-controls/schedule-controls.component";
 import {ScheduleDaysComponent} from "./components/schedule-day/schedule-days.component";
 import {ScheduleSectionComponent} from "./components/schedule-section/schedule-section.component";
+import {ScheduleAssignComponent} from "./components/schedule-assign/schedule-assign.component";
 
 //containers
 import {ScheduleComponent} from "./containers/schedule/schedule.component";
@@ -31,7 +32,8 @@ const ROUTER: Routes = [
     ScheduleCalendarComponent,
     ScheduleControlsComponent,
     ScheduleDaysComponent,
-    ScheduleSectionComponent
+    ScheduleSectionComponent,
+    ScheduleAssignComponent
   ]
 })
 export class ScheduleModule{}

@@ -20,7 +20,6 @@ import {ScheduleItem, ScheduleList} from "../../../shared/services/schedule/sche
         [section]="getSection(section.key)" 
         (select)="selectSection($event, section.key)"></schedule-section>
       
-      
     </div>
   `
 })
@@ -56,11 +55,11 @@ export class ScheduleCalendarComponent implements OnChanges{
     this.selectedWeek = this.getStartOfWeek(new Date(this.selectedDay));
   }
 
-  selectSection({type, assigment, data}:any, section: string){
+  selectSection({type, assigned, data}:any, section: string){
     const day = this.selectedDay;
     this.select.emit({
       type,
-      assigment,
+      assigned,
       day,
       data,
       section
